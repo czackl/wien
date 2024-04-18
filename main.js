@@ -14,6 +14,10 @@ let map = L.map("map").setView([stephansdom.lat, stephansdom.lng], 12);
 let startLayer = L.tileLayer.provider("OpenTopoMap");
 startLayer.addTo(map);
 
+let themaLayer = {
+  sights: L.featureGroup().addTo(map),
+}
+
 // Hintergrundlayer
 L.control
   .layers({
@@ -25,6 +29,8 @@ L.control
     "BasemapAT Oberfläche": L.tileLayer.provider("BasemapAT.surface"),
     "BasemapAT Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto"),
     "BasemapAT Beschriftung": L.tileLayer.provider("BasemapAT.overlay"),
+  }, {
+    "Sehenwürdigkeiten": themaLayer.sights
   })
   .addTo(map);
 
@@ -49,7 +55,7 @@ async function loadSights(url) {
   console.log("loading", url);
   let respone = await fetch(url);
   let geojson = await respone.json();
-  L.geoJson(geojson).addTo(map);
+  L.geoJson(geojson).addTo(themaLayer.sights);
 }
 
 
