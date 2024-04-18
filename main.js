@@ -68,3 +68,43 @@ async function loadSights(url) {
 
 
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json");
+
+
+
+
+
+/* 
+Suche Sightseeing 
+
+loadLines
+layer: lines
+
+
+loadStops 
+layer: stops
+Touristische Kraftfahrlinien Haltestellen Viennea.... 
+
+
+
+
+
+
+Suche Fußgängerzonen 
+
+loadZones
+layer: zones
+Fußgängerzonen Wien 
+
+
+
+Suche Hotels 
+
+LoadHotels
+layer: hotels
+Hotels und Unterkünfte
+
+
+
+
+
+*/ 
