@@ -55,7 +55,11 @@ async function loadSights(url) {
   console.log("loading", url);
   let respone = await fetch(url);
   let geojson = await respone.json();
-  L.geoJson(geojson).addTo(themaLayer.sights);
+  L.geoJson(geojson, {
+    onEachFeature: function (feature, layer) {
+      console.log(feature);
+    }
+  }).addTo(themaLayer.sights);
 }
 
 
