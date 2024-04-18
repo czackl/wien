@@ -11,13 +11,14 @@ let stephansdom = {
 let map = L.map("map").setView([stephansdom.lat, stephansdom.lng], 12);
 
 // BasemapAT Layer mit Leaflet provider plugin als startLayer Variable
-let startLayer = L.tileLayer.provider("BasemapAT.grau");
+let startLayer = L.tileLayer.provider("OpenTopoMap");
 startLayer.addTo(map);
 
 // Hintergrundlayer
 L.control
   .layers({
-    "BasemapAT Grau": startLayer,
+    "OpenTopoMap": startLayer,
+    "BasemapAT Grau": L.tileLayer.provider("BasemapAT.grau"),
     "BasemapAT Standard": L.tileLayer.provider("BasemapAT.basemap"),
     "BasemapAT High-DPI": L.tileLayer.provider("BasemapAT.highdpi"),
     "BasemapAT Gelände": L.tileLayer.provider("BasemapAT.terrain"),
