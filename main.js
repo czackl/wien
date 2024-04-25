@@ -16,10 +16,10 @@ startLayer.addTo(map);
 
 let themaLayer = {
   sights: L.featureGroup(),
-  lines: L.featureGroup().addTo(map),
-  stops: L.featureGroup().addTo(map),
+  lines: L.featureGroup(),
+  stops: L.featureGroup(),
   zones: L.featureGroup(),
-  hotels: L.featureGroup()
+  hotels: L.featureGroup().addTo(map)
 }
 
 // Hintergrundlayer
@@ -213,8 +213,26 @@ async function loadHotels(url) {
 
   L.geoJson(hotels, {
     pointToLayer: function (feature, latlng) {
+      let category = feature.properties.KATEGORIE_TXT;
+
+      url = "hotel.png";
+
+      if (category === "1*") {
+        url = "hotel_1.png"
+      } else if (category === "2*") {
+        url = "hotel_2.png"
+      } else if (category === "3*") {
+        url = "hotel_3.png"
+      } else if (category === "4*") {
+        url = "hotel_4.png"
+      } else if (category === "5*") {
+        url = "hotel_5.png"
+      }
+
+
+
       let icon = L.icon({
-        iconUrl: "hotel.png",
+        iconUrl: url,
         iconAnchor: [12, 24],
         popupAnchor: [12, -24],
 
