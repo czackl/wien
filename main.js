@@ -15,11 +15,11 @@ let startLayer = L.tileLayer.provider("OpenTopoMap");
 startLayer.addTo(map);
 
 let themaLayer = {
-  sights: L.featureGroup().addTo(map),
+  sights: L.featureGroup(),
   lines: L.featureGroup().addTo(map),
   stops: L.featureGroup().addTo(map),
-  zones: L.featureGroup().addTo(map),
-  hotels: L.featureGroup().addTo(map)
+  zones: L.featureGroup(),
+  hotels: L.featureGroup()
 }
 
 // Hintergrundlayer
@@ -94,6 +94,7 @@ async function loadLines(url) {
   let geojson = await response.json();
   L.geoJson(geojson, {
     style: function (feature) {
+
       let lineName = feature.properties.LINE_NAME;
 
       let lineColor = "black";
@@ -108,7 +109,7 @@ async function loadLines(url) {
         lineColor = "#0074D9";
       } else if (lineName == "Green Line") {
         lineColor = "#2ECC40";
-      } else if (lineName == "Gray Line") {
+      } else if (lineName == "Grey Line") {
         lineColor = "#AAAAAA";
       }
 
@@ -133,8 +134,31 @@ async function loadStops(url) {
 
   L.geoJson(stops, {
     pointToLayer: function (feature, latlng) {
+
+
+      let lineName = feature.properties.LINE_NAME;
+      console.log(lineName);
+
+      url = "bus.png";
+
+      if (lineName == "Blue Line") {
+        url = "bus_3.png"
+      } else if (lineName == "Yellow Line") {
+        url = "bus_2.png"
+      } else if (lineName == "Green Line") {
+        url = "bus_4.png"
+      } else if (lineName == "Red Line") {
+        url = "bus_1.png"
+      } else if (lineName == "Grey Line") {
+        url = "bus_5.png"
+      } else if (lineName == "Orange Line") {
+        url = "bus_6.png"
+      }
+
+
+
       let icon = L.icon({
-        iconUrl: "bus.png",
+        iconUrl: url,
         iconAnchor: [12, 24],
         popupAnchor: [12, -24],
 
